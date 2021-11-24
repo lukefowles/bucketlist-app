@@ -1,16 +1,18 @@
-import axios from "axios";
+
 import { useState, useEffect } from "react";
-import CountryViewer from "../components /CountryViewer";
-import VisitedCountryButton from "../components /VisitedCountryButton";
-import BucketListCountryButton from "../components /BucketListCountryButton";
+import CountryViewer from "../components/CountryViewer";
+import VisitedCountryButton from "../components/VisitedCountryButton";
+import BucketListCountryButton from "../components/BucketListCountryButton";
+import "./CountryContainer.css";
 
 const CountryContainer = () => {
 
-    const [country, setCountry] = useState(null);
+    const [countries, setCountries] = useState(null);
 
     useEffect(() => {
-        axios.get("https://restcountries.com/v3.1/all")
-            .then(response => setCountry(response.data))
+        fetch("https://restcountries.com/v3.1/all")
+            .then(response => response.json())
+            .then(data => setCountries(data))
     }, []);
 
     // const updateVisitedCountryData = () => {
@@ -24,10 +26,10 @@ const CountryContainer = () => {
     }
 
     return (
-        country ?
+        countries ?
         <>
-            <CountryViewer country={country}/>
-            <BucketListCountryButton onClick={updateBucketListCountry}/>
+            <CountryViewer countries={countries}/>
+            {/* <BucketListCountryButton onClick={updateBucketListCountry}/> */}
             <VisitedCountryButton onClick={updateVisitedCountryData}/>
         </>
         :
