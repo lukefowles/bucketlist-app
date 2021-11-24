@@ -1,7 +1,7 @@
 import React from 'react'
 import VisitedCountryButton from './VisitedCountryButton'
 
-function IndividualCountry({country}) {
+function IndividualCountry({updateVisitedCountryData, country}) {
     return (
         <div className = "country">
             <div className = "info">
@@ -9,7 +9,7 @@ function IndividualCountry({country}) {
             {country.population}, {country.flag}</p>
             </div>
             <div className = "buttons">
-            <VisitedCountryButton />
+            <VisitedCountryButton updateVisitedCountryData = {updateVisitedCountryData} country= {country} />
             </div>
         </div>
     )

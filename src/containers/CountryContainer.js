@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import CountryViewer from "../components/CountryViewer";
 import VisitedCountryButton from "../components/VisitedCountryButton";
+import VisitedCountryViewer from "../components/VisitedCountryViewer";
 import "./CountryContainer.css";
 
 const CountryContainer = () => {
@@ -16,22 +17,36 @@ const CountryContainer = () => {
 
     const [visitedCountries, setVisitedCountries] = useState([]);
 
-    const updateVisitedCountryData = (name) =>{
-        const visitedCountry = countries.find((country) => {
+    const updateVisitedCountryData = (name) => {
+        console.log("Hi");
+        const visitedCountry = countries.find(country => 
             country.name.common === name
-        })
+        )
         setVisitedCountries([...visitedCountries, visitedCountry])
+        console.log(visitedCountry);
     }
 
-    return (
-        countries ?
-        <>
-            <CountryViewer countries={countries}/>
-            <VisitedCountryButton onClick={updateVisitedCountryData}/>
+
+        if(countries && visitedCountries.length !== 0) {
+           return( <>
+            <CountryViewer countries={countries} updateVisitedCountryData={updateVisitedCountryData}/>
+            {/* <VisitedCountryButton countries={countries} onClick={updateVisitedCountryData}/> */}
+            <VisitedCountryViewer visitedCountries= {visitedCountries}/>
+            </>)
+        }
+        else if(countries ) {
+            return (
+                <>
+            <CountryViewer countries={countries} updateVisitedCountryData={updateVisitedCountryData}/>
         </>
-        :
-        <p>Loading country photo...</p>
-    )
+            )
+        
+        }
+        else {
+            return (<p>Loading countries...</p> )
+        }
+        <p>Loading countries...</p>
+
 
 }
 
