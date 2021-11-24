@@ -1,12 +1,12 @@
 import React from 'react';
-import IndividualCountry from './IndividualCountry';
+import IndividualVisitedCountry from './IndividualVisitedCountry';
 
-function VisitedCountryViewer({visitedCountries}) {
+function VisitedCountryViewer({visitedCountries, removeCountry}) {
 
     const individualVisitedCountryComponents = visitedCountries.map((country, index) => {
         return (
             <div>
-                <IndividualCountry country={country} key={index} />
+                <IndividualVisitedCountry country={country} key={index} removeCountry = {removeCountry} />
             </div>
         )
     })

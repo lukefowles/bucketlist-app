@@ -23,7 +23,19 @@ const CountryContainer = () => {
             country.name.common === name
         )
         setVisitedCountries([...visitedCountries, visitedCountry])
+        const newCountries = countries.filter(country => country.name.common !== name)
+        setCountries([...newCountries])
         console.log(visitedCountry);
+    }
+
+    const removeCountry = (name) => {
+        const newCountries = countries.filter(country =>
+            country.name.common ===name)
+            setVisitedCountries([...newCountries])
+                const removedCountries = visitedCountries.find(country => 
+                country.name.common === name
+            )
+            setCountries([...countries, removedCountries])
     }
 
 
@@ -31,7 +43,7 @@ const CountryContainer = () => {
            return( <>
             <CountryViewer countries={countries} updateVisitedCountryData={updateVisitedCountryData}/>
             {/* <VisitedCountryButton countries={countries} onClick={updateVisitedCountryData}/> */}
-            <VisitedCountryViewer visitedCountries= {visitedCountries}/>
+            <VisitedCountryViewer visitedCountries= {visitedCountries} removeCountry = {removeCountry}/>
             </>)
         }
         else if(countries ) {
