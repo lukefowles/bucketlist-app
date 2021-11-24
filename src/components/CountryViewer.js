@@ -5,7 +5,9 @@ const CountryViewer = ({countries}) => {
 
     const individualCountryComponents = countries.map((country, index) => {
         return (
-            <IndividualCountry country={country} key={index} />
+            <div>
+                <IndividualCountry country={country} key={index} />
+            </div>
         )
     })
 
