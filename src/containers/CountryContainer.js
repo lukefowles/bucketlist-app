@@ -29,7 +29,7 @@ const CountryContainer = () => {
         countries ?
         <>
             <CountryViewer countries={countries}/>
-            {/* <BucketListCountryButton onClick={updateBucketListCountry}/> */}
+            {/*<BucketListCountryButton onClick={updateBucketListCountry}/> */}
             <VisitedCountryButton onClick={updateVisitedCountryData}/>
         </>
         :
