@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import CountryViewer from "../components/CountryViewer";
 import VisitedCountryButton from "../components/VisitedCountryButton";
-import BucketListCountryButton from "../components/BucketListCountryButton";
 import "./CountryContainer.css";
 
 const CountryContainer = () => {
@@ -15,21 +14,19 @@ const CountryContainer = () => {
             .then(data => setCountries(data))
     }, []);
 
-    // const updateVisitedCountryData = () => {
-    //     console.log("updating dog data from DogContainer");
-    //     axios.get("https://dog.ceo/api/breeds/image/random")
-    //         .then(response => setCountry(response.data))
-    // }
+    const [visitedCountries, setVisitedCountries] = useState([]);
 
-    const updateVisitedCountryData = () =>{
-        
+    const updateVisitedCountryData = (name) =>{
+        const visitedCountry = countries.find((country) => {
+            country.name.common === name
+        })
+        setVisitedCountries([...visitedCountries, visitedCountry])
     }
 
     return (
         countries ?
         <>
             <CountryViewer countries={countries}/>
-            {/*<BucketListCountryButton onClick={updateBucketListCountry}/> */}
             <VisitedCountryButton onClick={updateVisitedCountryData}/>
         </>
         :

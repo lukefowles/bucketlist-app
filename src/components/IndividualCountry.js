@@ -1,5 +1,4 @@
 import React from 'react'
-import BucketListCountryButton from './BucketListCountryButton'
 import VisitedCountryButton from './VisitedCountryButton'
 
 function IndividualCountry({country}) {
@@ -11,7 +10,6 @@ function IndividualCountry({country}) {
             </div>
             <div className = "buttons">
             <VisitedCountryButton />
-            <BucketListCountryButton />
             </div>
         </div>
     )
