@@ -64,9 +64,10 @@ function CountryMap() {
             const popUpContent = ReactDOMServer.renderToString(
                 <IndividualCountry country={matchingUnvisitedCountry} 
                 updateVisitedCountryData={updateVisitedCountryData} key={unvisitedIndex}/>
-              );
-            layer.bindPopup(popUpContent); 
-        }
+                );
+                layer.bindPopup(popUpContent);
+
+            }
 
         if(matchingVisitedCountry) {
             const popUpContent = ReactDOMServer.renderToString(
@@ -76,7 +77,17 @@ function CountryMap() {
             layer.bindPopup(popUpContent);
         }
 
-        
+        layer.on({
+            click: (event) => {
+                event.target.setStyle({
+                    color:"green",
+                    fillColor:"yellow",
+                    fillOpacity: 0.5
+                })
+            }
+            
+        })
+    
     }
 
     let countryStyle = {
