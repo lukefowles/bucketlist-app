@@ -33,9 +33,9 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
-  border: 1px solid black;
   width: 70%;
   margin: auto
+  
 }
 
 .buttons{
@@ -44,7 +44,37 @@
 }
 
 .info{
-  display: flex;
+  display: grid;
   justify-content: flex-start;
-  width: 50%;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  grid-template-areas: "name"
+                        "capital"
+                        "population"
+                        "flag";
+}
+
+.name{
+  grid-area: "name";
+  display: flex;
+  justify-content: center;
+}
+
+.capital{
+  grid-area: "capital";
+  display: flex;
+  justify-content: center;
+}
+
+.population{
+  grid-area: "population";
+  display: flex;
+  justify-content: center;
+}
+
+.flag{
+  grid-area: "flag";
+  display: flex;
+  justify-content: center;
 }
