@@ -59,6 +59,7 @@
   grid-area: "name";
   display: flex;
   justify-content: center;
+  padding: 0em 1em 0em 1em;
 }
 
 .capital{

@@ -28,8 +28,8 @@ const CountryContainer = () => {
     }
 
     const removeCountry = (name) => {
-        const newCountries = countries.filter(country =>
-            country.name.common ===name)
+        const newCountries = visitedCountries.filter(country =>
+            country.name.common !==name)
             setVisitedCountries([...newCountries])
                 const removedCountries = visitedCountries.find(country => 
                 country.name.common === name
