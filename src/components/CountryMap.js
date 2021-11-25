@@ -20,6 +20,7 @@ function CountryMap() {
 
     const [visitedCountries, setVisitedCountries] = useState([]);
 
+
     const updateVisitedCountryData = (name) => {
         console.log("Hi");
         const visitedCountry = countries.find(country => 
@@ -44,31 +45,33 @@ function CountryMap() {
 
     const onEachCountry = (geoJSONCountry, layer) => {
         console.log(countries[0].name.common);
-        // const popUpContent = ReactDOMServer.renderToString(
-        //     <TestComponent geoJSONCountry={geoJSONCountry} />
-        //   );
-        // layer.bindPopup(popUpContent);
 
 
         const matchingUnvisitedCountry = countries.find(country => 
             geoJSONCountry.properties.ISO_A3 === country.cca3);
 
+        const unvisitedIndex = countries.findIndex((country) =>
+            geoJSONCountry.properties.ISO_A3 === country.cca3);   
+
         const matchingVisitedCountry = visitedCountries.find((country) => 
                 geoJSONCountry.properties.ISO_A3 === country.cca3);
+        const visitedIndex = visitedCountries.findIndex((country) =>
+            geoJSONCountry.properties.ISO_A3 === country.cca3);        
 
         
         if (matchingUnvisitedCountry) {
             // layer.bindPopup(matchingCountry.flag);
             const popUpContent = ReactDOMServer.renderToString(
                 <IndividualCountry country={matchingUnvisitedCountry} 
-                updateVisitedCountryData={updateVisitedCountryData}/>
+                updateVisitedCountryData={updateVisitedCountryData} key={unvisitedIndex}/>
               );
             layer.bindPopup(popUpContent); 
         }
 
         if(matchingVisitedCountry) {
             const popUpContent = ReactDOMServer.renderToString(
-                <IndividualCountry country={matchingVisitedCountry} removeCountry = {removeCountry}/>
+                <IndividualCountry country={matchingVisitedCountry} removeCountry = {removeCountry} 
+                key ={visitedIndex}/>
               );
             layer.bindPopup(popUpContent);
         }
@@ -87,7 +90,8 @@ function CountryMap() {
         countries ? 
         <div>
            <h1>My Map</h1> 
-           <MapContainer style={{height: "80vh"}} zoom={2} center={[20,100]}>
+           <MapContainer style={{height: "80vh"}} zoom={2} center={[20,100]} 
+                updateVisitedCountryData={updateVisitedCountryData} removeCountry = {removeCountry}>
                <GeoJSON  style = {countryStyle} data = {mapData.features} onEachFeature={onEachCountry}
                updateVisitedCountryData={updateVisitedCountryData} removeCountry = {removeCountry}/>
                {/* <TileLayer
