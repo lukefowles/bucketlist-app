@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from "react";
 import CountryViewer from "../components/CountryViewer";
-import VisitedCountryButton from "../components/VisitedCountryButton";
 import VisitedCountryViewer from "../components/VisitedCountryViewer";
 import "./CountryContainer.css";
 
@@ -29,8 +28,8 @@ const CountryContainer = () => {
     }
 
     const removeCountry = (name) => {
-        const newCountries = countries.filter(country =>
-            country.name.common ===name)
+        const newCountries = visitedCountries.filter(country =>
+            country.name.common !==name)
             setVisitedCountries([...newCountries])
                 const removedCountries = visitedCountries.find(country => 
                 country.name.common === name
@@ -57,7 +56,6 @@ const CountryContainer = () => {
         else {
             return (<p>Loading countries...</p> )
         }
-        <p>Loading countries...</p>
 
 
 }
